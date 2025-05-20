@@ -10,8 +10,10 @@ const options = {};
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
+// Extend global without namespace and disable ESLint for var usage
 declare global {
-    var _mongoClientPromise: Promise<MongoClient>;
+    // eslint-disable-next-line no-var
+    var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
 // In development mode, use a global variable so that the value is preserved across module reloads caused by Hot Module Replacement.

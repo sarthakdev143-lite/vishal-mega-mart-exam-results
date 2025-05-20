@@ -53,7 +53,7 @@ export default function ResultPage() {
                 setResult(data);
                 confetti({ particleCount: 200, spread: 143 });
             } catch (e) {
-                setError("Could not load result");
+                setError("Could not load result : \n" + e);
             }
         };
 

@@ -12,7 +12,7 @@ function generateCaptcha() {
     return { question, answer };
 }
 
-type ExistingUser = { name: string; email: string; _id?: string;[key: string]: any };
+type ExistingUser = { name: string; email: string; _id?: string; };
 
 const Results = () => {
     const [student, setStudent] = useState({ name: "", email: "" });
@@ -179,7 +179,7 @@ const Results = () => {
                 </form>
 
                 <p className="mt-6 text-xs text-gray-400 text-center">
-                    🤫 This page is just for laughs. Don't take it seriously.
+                    🤫 This page is just for laughs. Don&apos;t take it seriously.
                 </p>
             </div>
         </div>
