@@ -7,9 +7,8 @@ import { useRouter } from "next/navigation";
 function generateCaptcha() {
     const a = Math.floor(1 + Math.random() * 9);
     const b = Math.floor(1 + Math.random() * 9);
-    const operator = Math.random() > 0.5 ? "+" : "-";
-    const question = `${a} ${operator} ${b}`;
-    const answer = operator === "+" ? a + b : a - b;
+    const question = `${a} + ${b}`;
+    const answer = a + b;
     return { question, answer };
 }
 
