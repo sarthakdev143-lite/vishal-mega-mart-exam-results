@@ -10,7 +10,10 @@ const Header = () => {
     return (
         <header className="py-4 bg-[#0068A9]">
             <nav className="flex-col flex justify-center items-center gap-4 relative">
-                <button onClick={() => router.push("/results")} className="cursor-pointer absolute top-1/2 left-8 flex -translate-y-1/2 bg-white text-white rounded-full p-3">
+                <button
+                    onClick={() => router.push("/results")}
+                    className="cursor-pointer absolute top-1/2 left-8 flex -translate-y-1/2 bg-white rounded-full p-3"
+                >
                     <House className='text-[#0068A9]' />
                 </button>
                 <div className="bg-white p-3 w-fit rounded">
@@ -27,10 +30,12 @@ const Header = () => {
                         priority
                     />
                 </div>
-                <h1 className='w-fit text-2xl text-white text-center px-4 justify-center'>VMM Security Guard Entrance Exam Results 2025</h1>
+                <h1 className='w-fit text-2xl text-white text-center px-4 justify-center'>
+                    VMM Security Guard Entrance Exam Results 2025
+                </h1>
             </nav>
         </header>
     );
-}
+};
 
 export default Header;

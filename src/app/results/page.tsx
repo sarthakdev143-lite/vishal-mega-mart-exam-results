@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -16,7 +16,7 @@ function generateCaptcha() {
 const Results = () => {
     const [student, setStudent] = useState({ name: "", email: "" });
     const [captchaInput, setCaptchaInput] = useState("");
-    const [captcha, setCaptcha] = useState(generateCaptcha());
+    const [captcha, setCaptcha] = useState<{ question: string; answer: number } | null>(null);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -32,7 +32,7 @@ const Results = () => {
             return;
         }
 
-        if (parseInt(captchaInput) !== captcha.answer) {
+        if (parseInt(captchaInput) !== captcha?.answer) {
             setError("CAPTCHA is incorrect!");
             setLoading(false);
             return;
@@ -55,6 +55,10 @@ const Results = () => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        setCaptcha(generateCaptcha());
+    }, []);
 
     return (
         <div className="mt-16 flex items-center justify-center px-4">
@@ -79,7 +83,7 @@ const Results = () => {
                     <div className="flex items-center gap-2 mb-2">
                         <input
                             type="text"
-                            placeholder={`Solve: ${captcha.question}`}
+                            placeholder={captcha ? `Solve: ${captcha.question}` : "Loading Captcha..."}
                             className="border p-2 w-full rounded focus:ring-2 focus:ring-blue-300 outline-none"
                             value={captchaInput}
                             onChange={(e) => setCaptchaInput(e.target.value)}
@@ -93,6 +97,7 @@ const Results = () => {
                             🔄
                         </button>
                     </div>
+
 
                     {error && <p className="text-red-500 mb-3 text-sm text-center">{error}</p>}
 
