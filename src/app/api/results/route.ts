@@ -10,15 +10,13 @@ const SUBJECTS = [
 ];
 
 function generateRealisticMarks() {
-    const marks: Record<string, { theory: number; practical: number; }> = {};
+    const marks: { [key: string]: { theory: number; practical: number } } = {};
 
     SUBJECTS.forEach((subject) => {
         const theory = Math.floor(Math.random() * 71) + 10; // 10-80
-        const practical = Math.floor(Math.random() * 16) + 5; // 10-20
+        const practical = Math.floor(Math.random() * 16) + 5; // 5-20
         marks[subject] = { theory, practical };
     });
-
-    console.log(marks)
 
     return marks;
 }
@@ -36,7 +34,23 @@ export async function POST(req: NextRequest) {
         const collection = db.collection("results");
 
         const existing = await collection.findOne({ email });
-        if (existing) return NextResponse.json(existing);
+
+        if (existing) {
+            if (existing.name.toLowerCase() !== name.toLowerCase()) {
+                // Important: Use status 200 instead of 409 to ensure the client doesn't treat this as an error 
+                // (though it is but still if the code works, don't touch it)
+                return NextResponse.json({
+                    message: "Email already associated with a different name: " + existing.name,
+                    exists: true,
+                    name: existing.name,
+                    email: existing.email,
+                    _id: existing._id
+                }, { status: 200 });
+            }
+
+            // If name matches, just return the existing record
+            return NextResponse.json(existing);
+        }
 
         const marks = generateRealisticMarks();
 
@@ -47,8 +61,12 @@ export async function POST(req: NextRequest) {
             createdAt: new Date(),
         };
 
-        await collection.insertOne(resultData);
-        return NextResponse.json(resultData);
+        const result = await collection.insertOne(resultData);
+
+        return NextResponse.json({
+            ...resultData,
+            _id: result.insertedId
+        });
 
     } catch (error) {
         console.error("API error:", error);
