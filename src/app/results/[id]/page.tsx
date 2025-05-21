@@ -102,7 +102,7 @@ export default function ResultPage() {
 
     return (
         <>
-            <div className="flex py-8 px-6 justify-evenly">
+            <div className="flex py-8 mt-12 px-6 justify-evenly">
                 <div className="max-w-4xl p-6 bg-white rounded shadow border border-gray-300 relative">
                     <h1 className="text-3xl font-bold mb-4 text-center text-[#004276] underline">Vishal Mega Mart Enterence Examination (VMMEE)</h1>
                     <h2 className="text-xl font-semibold mb-6 text-center">Marksheet of {result.name}</h2>

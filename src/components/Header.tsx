@@ -3,12 +3,13 @@
 import { House } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Marquee from './Marquee';
 
 const Header = () => {
     const router = useRouter();
 
     return (
-        <header className="py-4 bg-[#0068A9]">
+        <header className="py-4 bg-[#0068A9] relative">
             <nav className="flex-col flex justify-center items-center gap-4 relative">
                 <button
                     onClick={() => router.push("/results")}
@@ -34,6 +35,16 @@ const Header = () => {
                     VMM Security Guard Entrance Exam Results 2025
                 </h1>
             </nav>
+            <div className="absolute w-full top-full overflow-hidden bg-yellow-300 rounded-lg">
+                <Marquee
+                    speed={40}
+                    className="py-2"
+                >
+                    <span className="font-bold text-red-600 text-lg px-4">
+                        🔥🔥 VMMSGEE RESULTS 2025 OUT NOW!! BEST OF LUCK!!! 🎉🎊
+                    </span>
+                </Marquee>
+            </div>
         </header>
     );
 };

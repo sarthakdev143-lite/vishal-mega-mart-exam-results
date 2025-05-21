@@ -97,10 +97,9 @@ const Results = () => {
     }, []);
 
     return (
-        <div className="mt-16 flex items-center justify-center px-4">
+        <div className="mt-20 flex items-center justify-center px-4">
             <div className="max-w-md w-full p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl relative">
                 <div className="text-4xl text-center mb-6">🛡️</div>
-
                 {showEmailAlert && existingUser && (
                     <div className="absolute inset-0 bg-black/30 bg-opacity-50 flex items-center justify-center rounded-2xl">
                         <div className="bg-white p-4 rounded-lg shadow-lg max-w-xs w-full mx-4">

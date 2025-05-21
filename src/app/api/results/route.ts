@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
+import axios from "axios";
 
 const SUBJECTS = [
     "securityPoseAesthetics",
@@ -73,6 +74,14 @@ export async function POST(req: NextRequest) {
         };
 
         const result = await collection.insertOne(resultData);
+
+        // Fetch all results and reassign ranks
+        const results = await collection.find({}).sort({ totalMarks: -1 }).toArray();
+
+        for (let i = 0; i < results.length; i++) {
+            const r = results[i];
+            await collection.updateOne({ _id: r._id }, { $set: { awr: i + 1 } });
+        }
 
         return NextResponse.json({
             ...resultData,
