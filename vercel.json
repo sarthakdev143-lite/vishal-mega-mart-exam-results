@@ -1,6 +1,0 @@
-{
-    "cron": {
-        "schedule": "*/15 * * * *",
-        "path": "/api/update-ranks"
-    }
-}
