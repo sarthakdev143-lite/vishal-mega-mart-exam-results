@@ -1,12 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
-export async function GET(
-    _request: Request,
-    { params }: { params: { id: string } }
-) {
-    const id = params.id;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function GET(request: NextRequest, context: any) {
+    const id = context.params?.id;
 
     if (!id) {
         return NextResponse.json({ message: 'Invalid ID' }, { status: 400 });
