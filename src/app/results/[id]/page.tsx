@@ -15,14 +15,10 @@ const SUBJECT_NAMES: Record<string, string> = {
 };
 
 const GRADE_SYSTEM = [
-    { min: 91, grade: "A1" },
-    { min: 81, grade: "A2" },
-    { min: 71, grade: "B1" },
-    { min: 61, grade: "B2" },
-    { min: 51, grade: "C1" },
-    { min: 41, grade: "C2" },
-    { min: 33, grade: "D" },
-    { min: 0, grade: "E (Fail)" },
+    { min: 80, grade: "A" },
+    { min: 60, grade: "B" },
+    { min: 35, grade: "C" },
+    { min: 0, grade: "F (Fail)" },
 ];
 
 const getGrade = (mark: number) => {
@@ -32,6 +28,9 @@ const getGrade = (mark: number) => {
 type Result = {
     name: string;
     marks: Record<string, { theory?: number; practical?: number }>;
+    totalMarks: number;
+    percentage: number;
+    awr: number;
 };
 
 export default function ResultPage() {
@@ -97,10 +96,9 @@ export default function ResultPage() {
         };
     });
 
-    const totalMarks = subjectRows.reduce((acc, s) => acc + s.total, 0);
+    const cutoff = 65;
     const maxMarks = subjectRows.length * 100;
-    const percentage = ((totalMarks / maxMarks) * 100).toFixed(2);
-    const status = totalMarks / maxMarks >= 0.35 ? "ACCEPTED ✅" : "REJECTED ❌";
+    const status = result.totalMarks / maxMarks >= (cutoff / 100) ? "ACCEPTED ✅" : "REJECTED ❌";
 
     return (
         <>
@@ -136,11 +134,13 @@ export default function ResultPage() {
                         </table>
                     </div>
 
-                    <div className="mt-4 text-sm">
-                        <p><strong>Total Marks:</strong> {totalMarks} / {maxMarks}</p>
-                        <p><strong>Percentage:</strong> {percentage}%</p>
+                    <div className="mt-4 text-sm grid grid-cols-2">
+                        <p><strong>Total Marks:</strong> {result.totalMarks} / {maxMarks}</p>
                         <p><strong>Status:</strong> {status}</p>
+                        {result.awr && <p><strong>All World Rank (AWR):</strong> #{result.awr}</p>}
+                        <p><strong>Percentage:</strong> {result.percentage}%</p>
                     </div>
+                    <p className="mt-2 text-sm text-gray-500">Cut-off : {cutoff}%</p>
 
                     <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div className="flex flex-col items-center">

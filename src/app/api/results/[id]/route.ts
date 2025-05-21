@@ -27,8 +27,7 @@ export async function GET(
             return NextResponse.json({ message: 'Result not found' }, { status: 404 });
         }
 
-        const { name, marks } = result;
-        return NextResponse.json({ name, marks });
+        return NextResponse.json(result);
     } catch (error) {
         console.error('Error fetching result:', error);
         return NextResponse.json(

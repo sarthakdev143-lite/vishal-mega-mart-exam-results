@@ -54,10 +54,21 @@ export async function POST(req: NextRequest) {
 
         const marks = generateRealisticMarks();
 
+        const subjectKeys = Object.keys(marks);
+        const totalMarks = subjectKeys.reduce((sum, key) => {
+            const subject = marks[key];
+            return sum + (subject.theory || 0) + (subject.practical || 0);
+        }, 0);
+
+        const percentage = parseFloat(((totalMarks / 500) * 100).toFixed(2));
+
         const resultData = {
             name,
             email,
             marks,
+            totalMarks,
+            percentage,
+            awr: null, // will be filled later 
             createdAt: new Date(),
         };
 
