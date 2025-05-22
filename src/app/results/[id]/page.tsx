@@ -102,32 +102,38 @@ export default function ResultPage() {
 
     return (
         <>
-            <div className="flex py-8 mt-12 px-6 justify-evenly">
-                <div className="max-w-4xl p-6 bg-white rounded shadow border border-gray-300 relative">
+            <div className="flex py-8 mt-12 px-6 justify-evenly gap-4 flex-wrap">
+                <div className="max-w-4xl p-6 flex flex-col bg-white rounded shadow border border-gray-300 relative">
                     <h1 className="text-3xl font-bold mb-4 text-center text-[#004276] underline">Vishal Mega Mart Enterence Examination (VMMEE)</h1>
                     <h2 className="text-xl font-semibold mb-6 text-center">Marksheet of {result.name}</h2>
 
                     <div className="w-full overflow-x-auto">
-                        <table className="w-full border text-sm">
+                        <table className="border text-sm">
                             <thead>
                                 <tr className="bg-gray-100">
-                                    <th className="border px-2 py-1">S.No</th>
-                                    <th className="border px-2 py-1 text-left">Subject</th>
-                                    <th className="border px-2 py-1">Theory (80)</th>
-                                    <th className="border px-2 py-1">Practical (20)</th>
-                                    <th className="border px-2 py-1">Total (100)</th>
-                                    <th className="border px-2 py-1">Grade</th>
+                                    <th className="border px-2 py-1 sm:px-3 sm:py-2">S.No</th>
+                                    <th className="border px-2 py-1 sm:px-3 sm:py-2 text-left">Subject</th>
+                                    <th className="border px-2 py-1 sm:px-3 sm:py-2">Theory (80)</th>
+                                    <th className="border px-2 py-1 sm:px-3 sm:py-2">Practical (20)</th>
+                                    <th className="border px-2 py-1 sm:px-3 sm:py-2">Total (100)</th>
+                                    <th className="border px-2 py-1 sm:px-3 sm:py-2">Grade</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {subjectRows.map((row, i) => (
-                                    <tr key={row.subjectKey}>
-                                        <td className="border px-2 py-1 text-center">{i + 1}</td>
-                                        <td className="border px-2 py-1">{row.name}</td>
-                                        <td className="border px-2 py-1 text-center">{row.theory}</td>
-                                        <td className="border px-2 py-1 text-center">{row.practical}</td>
-                                        <td className="border px-2 py-1 text-center">{row.total}</td>
-                                        <td className="border px-2 py-1 text-center">{row.grade}</td>
+                                    <tr key={row.subjectKey} className="even:bg-gray-50">
+                                        <td className="border px-2 py-1 sm:px-3 sm:py-2 text-center">{i + 1}</td>
+                                        <td className="border px-2 py-1 sm:px-3 sm:py-2">
+                                            <div className="font-medium">{row.name}</div>
+                                        </td>
+                                        <td className="border px-2 py-1 sm:px-3 sm:py-2 text-center">{row.theory}</td>
+                                        <td className="border px-2 py-1 sm:px-3 sm:py-2 text-center">{row.practical}</td>
+                                        <td className="border px-2 py-1 sm:px-3 sm:py-2 text-center font-medium">{row.total}</td>
+                                        <td className="border px-2 py-1 sm:px-3 sm:py-2 text-center">
+                                            <span className="inline-block px-2 py-1 text-xs font-semibold rounded bg-blue-100 text-blue-800">
+                                                {row.grade}
+                                            </span>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -171,7 +177,7 @@ export default function ResultPage() {
                         * This result is for meme purposes only. Any resemblance to real exams is purely coincidental.
                     </div>
                 </div>
-                <div className="w-1/3">
+                <div>
                     <Leaderboard />
                 </div>
             </div>
