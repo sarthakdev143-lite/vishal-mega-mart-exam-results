@@ -102,12 +102,12 @@ export default function ResultPage() {
 
     return (
         <>
-            <div className="flex py-8 mt-12 px-6 justify-evenly gap-4 flex-wrap">
-                <div className="max-w-4xl p-6 flex flex-col bg-white rounded shadow border border-gray-300 relative">
+            <div className="flex py-8 sm:mt-12 mt-5 sm:px-6 px-2 justify-evenly gap-4 flex-wrap">
+                <div className="w-auto sm:p-6 p-4 flex flex-col sm:items-center bg-white rounded shadow border border-gray-300 relative overflow-hidden">
                     <h1 className="text-3xl font-bold mb-4 text-center text-[#004276] underline">Vishal Mega Mart Enterence Examination (VMMEE)</h1>
                     <h2 className="text-xl font-semibold mb-6 text-center">Marksheet of {result.name}</h2>
 
-                    <div className="w-full overflow-x-auto">
+                    <div className="max-w-auto overflow-x-auto">
                         <table className="border text-sm">
                             <thead>
                                 <tr className="bg-gray-100">
@@ -140,7 +140,7 @@ export default function ResultPage() {
                         </table>
                     </div>
 
-                    <div className="mt-4 text-sm grid grid-cols-2">
+                    <div className="mt-4 text-sm sm:grid sm:grid-cols-2 gap-x-6 gap-y-2">
                         <p><strong>Total Marks:</strong> {result.totalMarks} / {maxMarks}</p>
                         <p><strong>Status:</strong> {status}</p>
                         {result.awr && <p><strong>All World Rank (AWR):</strong> #{result.awr}</p>}

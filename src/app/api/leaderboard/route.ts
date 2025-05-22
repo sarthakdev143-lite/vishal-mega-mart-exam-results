@@ -20,7 +20,6 @@ export async function GET() {
             })
             .toArray();
 
-
         return NextResponse.json(top10);
     } catch (error) {
         console.error("Error fetching leaderboard:", error);

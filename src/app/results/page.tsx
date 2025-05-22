@@ -131,26 +131,26 @@ const Results = () => {
                     <input
                         type="text"
                         placeholder="Enter your name"
-                        className="border p-2 w-full mb-4 rounded focus:ring-2 focus:ring-blue-300 outline-none"
+                        className="border border-gray-500 p-2 w-full mb-4 rounded focus:ring-2 focus:ring-blue-300 outline-none"
                         value={student.name}
                         onChange={(e) => setStudent({ ...student, name: e.target.value })}
                         disabled={loading}
-                        maxLength={18}
+                        maxLength={50}
                     />
                     <input
                         type="email"
                         placeholder="Enter your email"
-                        className="border p-2 w-full mb-4 rounded focus:ring-2 focus:ring-blue-300 outline-none"
+                        className="border border-gray-500 p-2 w-full mb-4 rounded focus:ring-2 focus:ring-blue-300 outline-none"
                         value={student.email}
                         onChange={(e) => setStudent({ ...student, email: e.target.value })}
                         disabled={loading}
-                        maxLength={30}
+                        maxLength={50}
                     />
                     <div className="flex items-center gap-2 mb-2">
                         <input
                             type="text"
                             placeholder={captcha ? `Solve: ${captcha.question}` : "Loading Captcha..."}
-                            className="border p-2 w-full rounded focus:ring-2 focus:ring-blue-300 outline-none"
+                            className="border border-gray-500 p-2 w-full rounded focus:ring-2 focus:ring-blue-300 outline-none"
                             value={captchaInput}
                             onChange={(e) => setCaptchaInput(e.target.value)}
                             disabled={loading}
@@ -158,7 +158,7 @@ const Results = () => {
                         <button
                             type="button"
                             onClick={() => setCaptcha(generateCaptcha())}
-                            className="px-3 py-2 bg-gray-100 rounded hover:bg-gray-200 transition"
+                            className="px-3 py-2 bg-gray-100 rounded hover:bg-gray-200 transition border-gray-500 border cursor-pointer"
                             title="Refresh CAPTCHA"
                             disabled={loading}
                         >
@@ -171,7 +171,7 @@ const Results = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`bg-[#0068A9] text-white px-4 py-2 rounded w-full text-center transition ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#005180]"}`}
+                        className={`bg-[#0068A9] text-white px-4 py-2 cursor-pointer rounded w-full text-center transition ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#005180]"}`}
                     >
                         {loading ? "Loading..." : "Get Result"}
                     </button>

@@ -35,7 +35,7 @@ const Header = () => {
                     VMM Security Guard Entrance Exam Results 2025
                 </h1>
             </nav>
-            <div className="absolute w-full top-full overflow-hidden bg-yellow-300 rounded-lg">
+            <div className="absolute w-full top-full overflow-hidden bg-yellow-300">
                 <Marquee
                     speed={40}
                     className="py-2"
