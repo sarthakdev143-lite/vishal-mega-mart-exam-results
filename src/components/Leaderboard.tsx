@@ -19,7 +19,6 @@ const Leaderboard = () => {
             try {
                 setLoading(true);
                 const res = await axios.get("/api/leaderboard");
-                console.log("Leaderboard data:", res.data);
 
                 const data = res.data;
 

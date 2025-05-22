@@ -6,7 +6,6 @@ export async function GET() {
         const client = await clientPromise;
         const db = client.db("vishal-exam");
         const collection = db.collection("results");
-        console.log("Fetching Leaderboard..")
 
         const top10 = await collection
             .find({})
@@ -21,7 +20,6 @@ export async function GET() {
             })
             .toArray();
 
-        console.log("Top 10 : ", top10)
 
         return NextResponse.json(top10);
     } catch (error) {
